@@ -1,8 +1,16 @@
-var timerEl = document.getElementById('countdown');
-var quizContainer = document.getElementById('quiz');
-var resultsContainer = document.getElementById('results');
-var submitButton = document.getElementById('submit');
-
+const navBar = document.querySelector('nav');
+const highscoresLink = document.getElementById('highscores-link');
+const container = document.getElementById('container');
+const timerDisplay = document.getElementById('timer');
+const startButton = document.getElementById('start-button');
+const title = document.getElementById('title');
+const text = document.getElementById('text');
+const quizAnswers = document.getElementById('quiz-answers');
+const answerButtons = document.getElementsByClassName('answer-button');
+const answerMessage = document.getElementById('answer-message');
+const inputField = document.getElementById('input-field');
+const names = document.getElementById('names');
+const submitButton = document.getElementById('submit-button');
 // GIVEN I am taking a code quiz
 
 // WHEN I click the start button
