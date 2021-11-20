@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>code-quiz</title>
+    <title>Code-Quiz</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -18,26 +18,35 @@
             <p class="main">
                 Start this code quiz
             </p>
-            <button id="start">Start</button>
+            <button id="start-btn">Start</button>
         </div>
+
+        <!-- Quiz -->
+        <div id="options">
+            <button id="option1"></button>
+            <button id="option2"></button>
+            <button id="option3"></button>
+            <button id="option4"></button>
+          <p id="timer">Timer</p>
+        </div>
+
+        <!-- post your score -->
+        <div id="adding-score">
+            <p id="your-score">Your score:</p>
+            <p>Name: </p>
+            <input id="score-name" type="text">
+            <button id="adding-score-yes">Yes</button>
+        </div>
+
+        <!-- highscores -->
+        <div id="score">
+            <ul id="scoreboard"></ul>
+            <div id="clear-scoreboard"></div>
+            <button id="clear-score">Clear Scoreboard</button>
+            <button id="play-again">Play Again</button>
+        </div>
+        
     </main>
-    
-    <!-- Quiz -->
-    <div id="options">
-        <button id="option1"></button>
-        <button id="option2"></button>
-        <button id="option3"></button>
-        <button id="option4"></button>
-        <p id="timer">Timer</p>
-    </div>
-
-    <div id="adding-score">
-        <p id="your-score">Your score:</p>
-        <p>Name: </p>
-        <input id="score-name" type="text">
-        <button id="adding-score-yes">Yes</button>
-    </div>
-
     <script src="./assets/script/script.js"></script>
 </body>
 </html>

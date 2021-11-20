@@ -1,16 +1,24 @@
-const navBar = document.querySelector('nav');
-const highscoresLink = document.getElementById('highscores-link');
-const container = document.getElementById('container');
-const timerDisplay = document.getElementById('timer');
-const startButton = document.getElementById('start-button');
-const title = document.getElementById('title');
-const text = document.getElementById('text');
-const quizAnswers = document.getElementById('quiz-answers');
-const answerButtons = document.getElementsByClassName('answer-button');
-const answerMessage = document.getElementById('answer-message');
-const inputField = document.getElementById('input-field');
-const names = document.getElementById('names');
-const submitButton = document.getElementById('submit-button');
+// define varibles
+var header = document.querySelector(".header");
+var start = document.querySelector("#intro");
+var addingScore = document.querySelector("#adding-score");
+var scoreEl = document.querySelector("#score");
+var main = document.querySelector(".main");
+var startBtn = document.querySelector("#start-btn");
+var options = document.querySelector("#options");
+var option1 = document.querySelector("#option1");
+var option2 = document.querySelector("#option2");
+var option3 = document.querySelector("#option3");
+var option4 = document.querySelector("#option4");
+var addingScoreYes = document.querySelector("#adding-score-yes");
+var addingScoreScore = document.querySelector("#your-score");
+var scoreName = document.querySelector("#score-name");
+var timerEl = document.querySelector("#timer");
+var playAgain = document.querySelector("#play-again");
+var scoreboard = document.querySelector("#scoreboard");
+var clearScore = document.querySelector("#clear-score");
+var clearScoreboard = document.querySelector("#clear-scoreboard");
+
 // GIVEN I am taking a code quiz
 
 // WHEN I click the start button
