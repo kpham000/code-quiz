@@ -23,65 +23,76 @@ var clearScoreboard = document.querySelector("#clear-scoreboard");
 
 // WHEN I click the start button
 
+options.setAttribute("style","display:none;");
+addingScore.setAttribute("style","display:none;");
+scoreEl.setAttribute("style","display:none;");
+
 // THEN a timer starts and I am presented with a question
 // startTime.onclick('');
-var startingMinutes = 2;
-let time = startingMinutes * 60;
 
-var countdownEl = document.getElementById('countdown');
-
-
-setInterval(updateCountdown,1000);
-
-function updateCountdown() {
-    var minutes = Math.floor(time/ 60);
-    let seconds = time % 60;
-
-    seconds = seconds < 10 ? '0' + seconds : seconds;
-
-    countdownEl.innerHTML = `${minutes}:${seconds}`;
-    time--;
-}
  
-
-// quiz part
-
-const questions = [
-  {
-    question: "Inside which HTML element do we put the javascript?",
-    answers: ["<scripting>", "<javascript>", "<script>"],
-    correctAnswer: "<script>"
-  },
-
-  {
-    question: "Where is the correct place to insert a JavaScript?",
-    answers: ["<head> section", "<head> and <body> section", "<body> section"],
-    correctAnswer: "<body> section"
-  },
-
-  {
-    question: "How do you create a function in JavaScript?",
-    answers: ["function(myFunction)", "function = myFunction()", "function:myFunction()","function myFunction()"],
-    correctAnswer: "function myFunction()"
-  },
+// questions
+var question = [
+{
+title: "Inside which HTML element do we put the javascript?",
+  answerOne: "<scripting>",
+  answerTwo: "<javascript>",
+  answerThree: "<script>",
+  answerFour: "I don't know",
+  correct: 3
+},
+{
+title: "Where is the correct place to insert a JavaScript?",
+  answerOne: "<head> section",
+  answerTwo: "<head> and <body> section",
+  answerThree: "<body> section",
+  answerFour: "I don't know",
+  correct: 3
+},
+{
+title: "How do you create a function in JavaScript?",
+  answerOne: "function(myFunction)",
+  answerTwo: "function = myFunction()",
+  answerThree: "function myFunction()",
+  answerFour: "I don't know",
+  correct: 3
+},
+{
+title: "Select no",
+  answerOne: "no",
+  answerTwo: "yes",
+  answerThree: "ok",
+  answerFour: "I don't know",
+  correct: 1
+},
+{
+title: "Select yes",
+  answerOne: "no",
+  answerTwo: "yes",
+  answerThree: "false",
+  answerFour: "I don't know",
+  correct: 2
+}
 ];
 
 // timer countdown
-let timerSecs = 0;
-let currentQuestion = 0
-let score = 0;
-let scoreArray = [];
-let timerInterval = false;
+function startTimer(quizTime) {
+  timeNotRunning = false;
+  secondsLeft = quizTime;
+  timer = setInterval(function(){
+    secondsLeft--;
+    console.log(secondsLeft);
+    timerEl.textContent = secondsLeft + " seconds left in the quiz";
 
-timerSecs = 60;
-timerDisplay.textContent = timerSecs;
-
-countdown();
-
-nextQuestion();
-
-startButton.style.display = 'none';
+    if(secondsLeft <= 0){
+      clearInterval(timer);
+      timeNotRunning = true;
+      endQuiz();
+    }
+  },1000);
 }
+
+
 
 
 function nextQuestion() {
