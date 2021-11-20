@@ -1,0 +1,33 @@
+body {
+    background-color: peachpuff;
+    text-align: center;
+    margin-top: 10%;
+}
+
+#start-btn {
+    background-color: lightgreen;
+}
+
+#option1 {
+    background-color: cornsilk;
+}
+
+#option2 {
+    background-color: cornsilk;
+}
+
+#option3 {
+    background-color: cornsilk;
+}
+
+#option4 {
+    background-color: cornsilk;
+}
+
+#timer {
+    color: red;
+}
+
+#adding-score-yes {
+    background-color: lightgreen;
+}

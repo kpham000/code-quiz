@@ -1,5 +1,8 @@
-# code-quiz
+# Code Quiz
 
+<br>
+
+## Description
 For this assignment I must create a times quiz on javascript fundamentals that is able to store high scores. 
 
 These are the given criterias:
@@ -14,4 +17,17 @@ WHEN all questions are answered or the timer reaches 0
 THEN the game is over
 WHEN the game is over
 THEN I can save my initials and my score
-```
+
+<br>
+
+## Deployed 
+
+https://kpham000.github.io/code-quiz/
+
+<br>
+
+## GitHub Repository
+
+https://github.com/kpham000/code-quiz.git
+
+<br>
