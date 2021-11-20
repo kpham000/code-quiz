@@ -139,7 +139,65 @@ addingScoreYes.addEventListener("click",function(){
   }
 });
 
+addingScoreNo.addEventListener("click",goToPageStart);
 
+playAgain.addEventListener("click",goToPageStart);
+
+clearScore.addEventListener("click",function(){
+  scoreArr = [];
+  localStorage.setItem("scoreArr",JSON.stringify(scoreArr));
+  scoreboard.setAttribute("style","display:none;")
+  clearScoreboard.setAttribute("style","display:inline;")
+});
+
+// yes display score
+function addButton(option,yes){
+  option.addEventListener("click",function(){
+      if(question[selQuest].correct==yes){
+          console.log("That was correct!");
+      } else {
+          console.log("That was wrong");
+          secondsLeft = secondsLeft - 5;
+      }
+      if(selQuest < question.length-1){
+          nextQuestion();
+      } else {
+          //highscore page
+          endQuiz();
+      }
+  });
+}
+
+function nextQuestion(){
+  selQuest++;
+  header.textContent = question[selQuest].title;
+  option1.textContent = question[selQuest].answerOne;
+  option2.textContent = question[selQuest].answerTwo;
+  option3.textContent = question[selQuest].answerThree;
+  option4.textContent = question[selQuest].answerFour;
+}
+
+function goToPageStart(){
+  location.reload();
+}
+
+function loadScore(){
+  for (let i = 0; i < scoreArr.length; i=i+2) {
+      let li = document.createElement("li");
+      li.textContent = "Name: " + scoreArr[i] + ", Score: " + scoreArr[i+1];
+      scoreboard.appendChild(li);
+  }
+}
+
+function endQuiz(){
+  header.textContent = "Input name and press yes to save score";
+  options.setAttribute("style","display:none;");
+  addingScore.setAttribute("style","display:inline;");
+  score = secondsLeft;
+  addingScoreScore.textContent = "Your score: " + score;
+  console.log("your score is: " + score);
+  clearInterval(timer);
+}
 // THEN I am presented with another question
 // WHEN I answer a question incorrectly
 // THEN time is subtracted from the clock
