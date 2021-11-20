@@ -19,6 +19,14 @@ var scoreboard = document.querySelector("#scoreboard");
 var clearScore = document.querySelector("#clear-score");
 var clearScoreboard = document.querySelector("#clear-scoreboard");
 
+// scoping
+var selQuest = -1;
+var timeNotRunning = true;
+var secondsLeft;
+var score;
+var timer;
+var scoreArr;
+
 // GIVEN I am taking a code quiz
 
 // WHEN I click the start button
@@ -75,6 +83,24 @@ title: "Select yes",
 }
 ];
 
+// start btn
+startBtn.addEventListener("click",function(){
+
+  selQuest = -1;
+  let quizLength = 45;
+  startTimer(quizLength);
+
+  start.setAttribute("style","display:none;");
+  options.setAttribute("style","display:inline;");
+
+  nextQuestion();
+
+  addButton(option1,1);
+  addButton(option2,2);
+  addButton(option3,3);
+  addButton(option4,4);
+});
+
 // timer countdown
 function startTimer(quizTime) {
   timeNotRunning = false;
@@ -92,93 +118,28 @@ function startTimer(quizTime) {
   },1000);
 }
 
+// your score
+addingScoreYes.addEventListener("click",function(){
 
+  if(scoreName.value != ""){
+      header.textContent = "Scores:";
+      addingScore.setAttribute("style","display:none;");
+      scoreEl.setAttribute("style","display:inline;");
 
-
-function nextQuestion() {
-
-  container.className = 'results-page mt-5'
-  title.textContent = 'Question ' + (currentQuestion + 1);
-  title.setAttribute('class', 'h2')
-  text.textContent = questions[currentQuestion].question;
-  text.className = 'h4';
-  text.setAttribute('style', 'border-top: 1px double #ba251a; padding-top: 20px;')
-
-  quizAnswers.style.display = 'block';
-
-  answerButtons[0].textContent = questions[currentQuestion].answers[0];
-  answerButtons[1].textContent = questions[currentQuestion].answers[1];
-  answerButtons[2].textContent = questions[currentQuestion].answers[2];
-  answerButtons[3].textContent = questions[currentQuestion].answers[3];
-
-  for (i = 0; i < answerButtons.length; i++) {
-      answerButtons[i].addEventListener('click', checkAnswer);
-  }
-}
-
-function checkAnswer(event) {
-  console.log('User chose: ' + event.target.textContent);
-  console.log('Correct answer: ' + questions[currentQuestion].correctAnswer);
-
-  if (event.target.textContent === questions[currentQuestion].correctAnswer) {
-      answerMessage.style.display = 'block';
-      answerMessage.textContent = 'Correct!';
-      answerMessage.className = 'answer-message';
-      currentQuestion ++;
-      score ++;
-
-      setTimeout(function() {
-          answerMessage.style.display = 'none';
-      }, 800);
-
-      if (currentQuestion === questions.length) {
-          endGame();
-
+      if(localStorage.getItem("scoreArr")!==null){
+          scoreArr = JSON.parse(localStorage.getItem("scoreArr"));
+          scoreArr.push(scoreName.value,score);
+          localStorage.setItem("scoreArr",JSON.stringify(scoreArr));
       } else {
-          nextQuestion();
-      };
+          scoreArr = [scoreName.value,score];
+          localStorage.setItem("scoreArr",JSON.stringify(scoreArr));
+      }
 
-  } else {
-      currentQuestion ++;
-      answerMessage.style.display = 'block';
-      answerMessage.textContent = 'Incorrect!';
-      answerMessage.className = 'answer-message';
-
-      setTimeout(function() {
-          answerMessage.style.display = 'none';
-      }, 800);
-
-      if (timerSecs < 10) {
-          timerSecs -= 10;
-          endGame();
-
-      } else if (currentQuestion === 5) {
-          endGame();
-
-      } else {
-          timerSecs -= 10;
-          nextQuestion();
-      };
+      loadScore();
   }
-};
+});
 
-function endGame() {
-  quizAnswers.style.display = 'none';
-  container.className = 'quiz-page mt-5'
-  title.setAttribute('class', 'h2');
-  text.setAttribute('style', 'border-top: 0');
-  text.removeAttribute('class');
-  text.textContent = 'Your final score is ' + score + '. Enter your initials to see the high scores!';
-  inputField.style.display = 'block';
 
-  if (timerSecs <= 0) {
-      title.textContent = 'You ran out of time!';
-  } else {
-      title.textContent = 'All done!';
-  }
-
-  submitButton.addEventListener('click', storeHighScore);
-}
 // THEN I am presented with another question
 // WHEN I answer a question incorrectly
 // THEN time is subtracted from the clock
